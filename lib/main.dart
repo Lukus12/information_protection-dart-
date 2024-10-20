@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'encryption_methods/encryption_methods.dart';
-import 'encryption_methods/substitution_decryption.dart';
-import 'encryption_methods/permutation_decryption.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
 class EncryptionDecryptionPage extends StatefulWidget {
   const EncryptionDecryptionPage({super.key});
 
+
   @override
   _EncryptionDecryptionPageState createState() => _EncryptionDecryptionPageState();
 }
@@ -35,6 +35,7 @@ class _EncryptionDecryptionPageState extends State<EncryptionDecryptionPage> {
   late final EncryptionContext _contextMethods = EncryptionContext();
   late final PermutationDecryption _permutationDecryption = PermutationDecryption();
   late final SubstitutionDecryption _substitutionDecryption = SubstitutionDecryption();
+  late final GammingDecryption _gammingDecryption = GammingDecryption();
 
   void _encryptMessage() {
     String encrypted = _contextMethods.encrypt(_messageEncryptController.text, false, _keyController.text);
@@ -66,6 +67,9 @@ class _EncryptionDecryptionPageState extends State<EncryptionDecryptionPage> {
         break;
       case 1:
         _contextMethods.setEncryptionMethods(_permutationDecryption);
+        break;
+      case 2:
+        _contextMethods.setEncryptionMethods(_gammingDecryption);
         break;
       default:
         _contextMethods.setEncryptionMethods(_substitutionDecryption);
@@ -102,7 +106,7 @@ class _EncryptionDecryptionPageState extends State<EncryptionDecryptionPage> {
             ),
             TextField(
               controller: _keyController,
-              decoration: const InputDecoration(labelText: 'Ключ (дешифровка, 36 слов, незаполненые места будут дополнены автогенерацией)'),
+              decoration: const InputDecoration(labelText: 'Ключ (дешифровка)'),
             ),
             TextField(
               controller: _messageDecryptController,

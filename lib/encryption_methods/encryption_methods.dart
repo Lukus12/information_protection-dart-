@@ -1,3 +1,7 @@
+export 'substitution_decryption.dart';
+export 'permutation_decryption.dart';
+export 'gamming_decryption.dart';
+
 abstract class EncryptionMethods {
   String processMessage(String message, bool isEncryption, String key);
 

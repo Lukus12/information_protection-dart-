@@ -57,7 +57,7 @@ class PermutationDecryption implements EncryptionMethods {
     _key = [...inputNumbers, ...allNumbers];
 
     // Сохраняем строку ключа
-    _keyMessage = _key.join(', '); // Лучше будет представлять как строку
+    _keyMessage = _key.join(', ');
 
     /*
     //создать мапки прямую и ревёрс
